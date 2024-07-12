@@ -1,9 +1,10 @@
+
 let steps = [];
 let arraySize = 10;
 let interval;
 
-function loadSteps(algorithm) {
-    fetch(`steps_${algorithm}.txt`)
+function loadSteps(file) {
+    fetch(file)
         .then(response => response.text())
         .then(data => {
             steps = data.trim().split('\n').map(line => line.split(',').map(Number));
@@ -12,8 +13,15 @@ function loadSteps(algorithm) {
 }
 
 function startSorting(algorithm) {
-    fetch(`http://localhost:3000/sort?algorithm=${algorithm}`)
-        .then(() => loadSteps(algorithm));
+    let file;
+    if (algorithm === 'bubbleSort') {
+        file = 'bubble_steps.txt';
+    } else if (algorithm === 'selectionSort') {
+        file = 'selection_steps.txt';
+    } else if (algorithm === 'insertionSort') {
+        file = 'insertion_steps.txt';
+    }
+    loadSteps(file);
 }
 
 function startAnimation() {
@@ -33,24 +41,13 @@ function displayArray(array) {
     container.innerHTML = '';
     for (let i = 0; i < array.length; i++) {
         const bar = document.createElement('div');
-        bar.style.height = `${array[i]}px`;
-        bar.style.width = '20px';
-        bar.classList.add('array-bar');
+        bar.style.height = array[i] * 10 + 'px';
+        bar.className = 'bar';
         container.appendChild(bar);
     }
 }
 
 function resetArray() {
-    generateArray();
+    clearInterval(interval);
+    displayArray([5, 3, 8, 4, 2, 7, 1, 10, 6, 9]);
 }
-
-function generateArray() {
-    fetch('steps_reset.txt')
-        .then(response => response.text())
-        .then(data => {
-            const array = data.trim().split(',').map(Number);
-            displayArray(array);
-        });
-}
-
-generateArray();
