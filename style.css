@@ -1,26 +1,72 @@
+
+
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
+    text-align: center;
+    background-color: #282c34;
+    color: #61dafb;
 }
 
 h1 {
+    color: #61dafb;
     margin-bottom: 20px;
 }
 
 #array-container {
     display: flex;
+    justify-content: center;
     align-items: flex-end;
     height: 400px;
-    margin-bottom: 20px;
+    margin: 20px auto;
+    width: 80%;
+    border: 1px solid #61dafb;
+    background-color: #20232a;
 }
 
-.array-bar {
-    display: inline-block;
+.bar {
+    background-color: #61dafb;
     margin: 1px;
-    background-color: lightblue;
+    flex: 1;
+    transition: height 0.3s ease;
+}
+
+.bar:hover {
+    background-color: #21a1f1; /* Change color on hover */
+}
+
+#button-container {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #61dafb;
+    color: #282c34;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #21a1f1;
+}
+
+#resetButton {
+    background-color: #ff6347; /* Different color for reset button */
+    border-radius: 50%; /* Make the button circular */
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 20px auto; /* Center the button */
+    padding: 0;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+#resetButton:hover {
+    background-color: #ff4500;
 }
